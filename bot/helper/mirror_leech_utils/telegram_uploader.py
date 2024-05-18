@@ -203,7 +203,7 @@ class TgUploader:
 
     async def _send_media_group(self, subkey, key, msgs):
         for index, msg in enumerate(msgs):
-            if self._listener.mixedLeech or not self.self._user_session:
+            if self._listener.mixedLeech or not self._user_session:
                 msgs[index] = await self._listener.client.get_messages(
                     chat_id=msg[0], message_ids=msg[1]
                 )
@@ -471,7 +471,14 @@ class TgUploader:
                 await remove(thumb)
         except FloodWait as f:
             LOGGER.warning(str(f))
-            await sleep(f.value)
+            await sleep(f.value * 1.3)
+            if (
+                self._thumb is None
+                and thumb is not None
+                and await aiopath.exists(thumb)
+            ):
+                await remove(thumb)
+            return await self._upload_file(cap_mono, file, o_path)
         except Exception as err:
             if (
                 self._thumb is None

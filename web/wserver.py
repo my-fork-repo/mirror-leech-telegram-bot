@@ -3,6 +3,8 @@ from flask import Flask, request
 from logging import getLogger, FileHandler, StreamHandler, INFO, basicConfig
 from qbittorrentapi import NotFound404Error, Client as qbClient
 from time import sleep
+from sabnzbdapi import sabnzbdClient
+from asyncio import run
 
 from web.nodes import make_tree
 
@@ -10,9 +12,11 @@ app = Flask(__name__)
 
 aria2 = ariaAPI(ariaClient(host="http://localhost", port=6800, secret=""))
 
-basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-            handlers=[FileHandler('log.txt'), StreamHandler()],
-            level=INFO)
+basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[FileHandler("log.txt"), StreamHandler()],
+    level=INFO,
+)
 
 LOGGER = getLogger(__name__)
 
@@ -675,13 +679,17 @@ def re_verfiy(paused, resumed, client, hash_id):
         sleep(1)
         client = qbClient(host="localhost", port="8090")
         try:
-            client.torrents_file_priority(torrent_hash=hash_id, file_ids=paused, priority=0)
+            client.torrents_file_priority(
+                torrent_hash=hash_id, file_ids=paused, priority=0
+            )
         except NotFound404Error as e:
             raise NotFound404Error from e
         except Exception as e:
             LOGGER.error(f"{e} Errored in reverification paused!")
         try:
-            client.torrents_file_priority(torrent_hash=hash_id, file_ids=resumed, priority=1)
+            client.torrents_file_priority(
+                torrent_hash=hash_id, file_ids=resumed, priority=1
+            )
         except NotFound404Error as e:
             raise NotFound404Error from e
         except Exception as e:
@@ -693,7 +701,7 @@ def re_verfiy(paused, resumed, client, hash_id):
     return True
 
 
-@app.route('/app/files/<string:id_>', methods=['GET'])
+@app.route("/app/files/<string:id_>", methods=["GET"])
 def list_torrent_contents(id_):
     if "pin_code" not in request.args.keys():
         return code_page.replace("{form_url}", f"/app/files/{id_}")
@@ -707,25 +715,52 @@ def list_torrent_contents(id_):
     if request.args["pin_code"] != pincode:
         return "<h1>Incorrect pin code</h1>"
 
-    if len(id_) > 20:
+    if id_.startswith("SABnzbd_nzo"):
+
+        async def get_files():
+            client = sabnzbdClient(host="http://localhost", api_key="mltb", port="8070")
+            res = await client.get_files(id_)
+            await client.log_out()
+            return res
+
+        res = run(get_files())
+        cont = make_tree(res, "nzb")
+    elif len(id_) > 20:
         client = qbClient(host="localhost", port="8090")
         res = client.torrents_files(torrent_hash=id_)
-        cont = make_tree(res)
+        cont = make_tree(res, "qbit")
         client.auth_log_out()
     else:
         res = aria2.client.get_files(id_)
-        cont = make_tree(res, True)
-    return page.replace("{My_content}", cont[0]).replace("{form_url}", f"/app/files/{id_}?pin_code={pincode}")
+        cont = make_tree(res, "aria")
+    return page.replace("{My_content}", cont[0]).replace(
+        "{form_url}", f"/app/files/{id_}?pin_code={pincode}"
+    )
 
 
-@app.route('/app/files/<string:id_>', methods=['POST'])
+@app.route("/app/files/<string:id_>", methods=["POST"])
 def set_priority(id_):
     data = dict(request.form)
 
-    resume = ""
-    if len(id_) > 20:
-        pause = ""
+    if id_.startswith("SABnzbd_nzo"):
 
+        to_remove = []
+        for i, value in data.items():
+            if "filenode" in i and value != "on":
+                node_no = i.split("_")[-1]
+                to_remove.append(node_no)
+
+        async def remove_files():
+            client = sabnzbdClient(host="http://localhost", api_key="mltb", port="8070")
+            await client.remove_file(id_, to_remove)
+            await client.log_out()
+
+        run(remove_files())
+        LOGGER.info(f"Verified! nzo_id: {id_}")
+
+    elif len(id_) > 20:
+        resume = ""
+        pause = ""
         for i, value in data.items():
             if "filenode" in i:
                 node_no = i.split("_")[-1]
@@ -757,14 +792,15 @@ def set_priority(id_):
             LOGGER.error(f"Verification Failed! Hash: {id_}")
         client.auth_log_out()
     else:
+        resume = ""
         for i, value in data.items():
             if "filenode" in i and value == "on":
                 node_no = i.split("_")[-1]
-                resume += f'{node_no},'
+                resume += f"{node_no},"
 
         resume = resume.strip(",")
 
-        res = aria2.client.change_option(id_, {'select-file': resume})
+        res = aria2.client.change_option(id_, {"select-file": resume})
         if res == "OK":
             LOGGER.info(f"Verified! Gid: {id_}")
         else:
@@ -772,14 +808,17 @@ def set_priority(id_):
     return list_torrent_contents(id_)
 
 
-@app.route('/')
+@app.route("/")
 def homepage():
     return "<h1>See mirror-leech-telegram-bot <a href='https://www.github.com/anasty17/mirror-leech-telegram-bot'>@GitHub</a> By <a href='https://github.com/anasty17'>Anas</a></h1>"
 
 
 @app.errorhandler(Exception)
 def page_not_found(e):
-    return f"<h1>404: Torrent not found! Mostly wrong input. <br><br>Error: {e}</h2>", 404
+    return (
+        f"<h1>404: Task not found! Mostly wrong input. <br><br>Error: {e}</h2>",
+        404,
+    )
 
 
 if __name__ == "__main__":
