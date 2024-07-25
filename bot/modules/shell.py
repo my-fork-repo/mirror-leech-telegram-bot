@@ -19,10 +19,10 @@ async def shell(_, message):
     stdout, stderr, _ = await cmd_exec(cmd, shell=True)
     reply = ""
     if len(stdout) != 0:
-        reply += f"*Stdout*\n<code>{stdout}</code>\n"
+        reply += f"<b>☞ BASH\n\n• COMMAND\n<code>{cmd}</code>• OUTPUT\n ≤code>{stdout}</code>\n"
         LOGGER.info(f"Shell - {cmd} - {stdout}")
     if len(stderr) != 0:
-        reply += f"*Stderr*\n<code>{stderr}</code>"
+        reply += f"<b>☞ BASH\n\n• COMMAND\n<code>{cmd}</code>• OUTPUT\n ≤code>{stderr}</code>\n"
         LOGGER.error(f"Shell - {cmd} - {stderr}")
     if len(reply) > 3000:
         with BytesIO(str.encode(reply)) as out_file:
