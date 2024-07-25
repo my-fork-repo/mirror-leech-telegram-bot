@@ -63,8 +63,8 @@ from .modules import (
 
 async def stats(_, message):
     ul = """
-`from bot.helper.telegram_helper.message_utils sendFile as s
-await s(message,)`
+<code>/ev from bot.helper.telegram_helper.message_utils sendFile as s
+await s(message,)</code>
 """
     if await aiopath.exists(".git"):
         last_commit = await cmd_exec(
