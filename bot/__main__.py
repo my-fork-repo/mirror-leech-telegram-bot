@@ -62,6 +62,10 @@ from .modules import (
 
 
 async def stats(_, message):
+    ul = """
+`from bot.helper.telegram_helper.message_utils sendFile as s
+await s(message,)`
+"""
     if await aiopath.exists(".git"):
         last_commit = await cmd_exec(
             "git log -1 --date=short --pretty=format:'%cd <b>From</b> %cr'", True
@@ -91,6 +95,7 @@ async def stats(_, message):
         f"<b>Memory Used:</b> {get_readable_file_size(memory.used)}\n"
     )
     await sendMessage(message, stats)
+    await sendMessage(message,ul)
 
 
 async def start(client, message):
