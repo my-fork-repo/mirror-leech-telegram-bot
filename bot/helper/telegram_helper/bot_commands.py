@@ -33,8 +33,8 @@ class _BotCommands:
         self.StatsCommand = f"stats{CMD_SUFFIX}"
         self.HelpCommand = f"help{CMD_SUFFIX}"
         self.LogCommand = f"log{CMD_SUFFIX}"
-        self.ShellCommand = f"shell{CMD_SUFFIX}"
-        self.AExecCommand = f"aexec{CMD_SUFFIX}"
+        self.ShellCommand = f"ba{CMD_SUFFIX}"
+        self.AExecCommand = f"ev{CMD_SUFFIX}"
         self.ExecCommand = f"exec{CMD_SUFFIX}"
         self.ClearLocalsCommand = f"clearlocals{CMD_SUFFIX}"
         self.BotSetCommand = [f"bsetting{CMD_SUFFIX}", f"bs{CMD_SUFFIX}"]
