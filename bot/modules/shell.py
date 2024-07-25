@@ -13,16 +13,16 @@ from bot.helper.telegram_helper.message_utils import sendMessage, sendFile
 async def shell(_, message):
     cmd = message.text.split(maxsplit=1)
     if len(cmd) == 1:
-        await sendMessage(message, "No command to execute was given.")
+        await sendMessage(message, "No command given.")
         return
     cmd = cmd[1]
     stdout, stderr, _ = await cmd_exec(cmd, shell=True)
     reply = ""
     if len(stdout) != 0:
-        reply += f"<b>☞ BASH\n\n• COMMAND\n<code>{cmd}\n</code>• OUTPUT\n <code>{stdout}</b></code>\n"
+        reply += f"<b>☞ BASH\n\n• COMMAND\n<code>{cmd}\n</code>\n• OUTPUT\n <code>{stdout}</b></code>\n"
         LOGGER.info(f"Shell - {cmd} - {stdout}")
     if len(stderr) != 0:
-        reply += f"<b>☞ BASH\n\n• COMMAND\n<code>{cmd}</code>• ERROR\n <code>{stderr}</b></code>\n"
+        reply += f"<b>☞ BASH\n\n• COMMAND\n<code>{cmd}</code>\n\n• ERROR\n <code>{stderr}</b></code>\n"
         LOGGER.error(f"Shell - {cmd} - {stderr}")
     if len(reply) > 3000:
         with BytesIO(str.encode(reply)) as out_file:
