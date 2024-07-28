@@ -58,6 +58,7 @@ from .modules import (
     bot_settings,
     help,
     speedtest,
+    welcome,
     force_start,
 )  # noqa: F401
 
