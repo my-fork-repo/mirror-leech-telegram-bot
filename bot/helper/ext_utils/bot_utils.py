@@ -21,6 +21,7 @@ from bot.helper.telegram_helper.button_build import ButtonMaker
 THREADPOOL = ThreadPoolExecutor(max_workers=1000)
 
 COMMAND_USAGE = {}
+SIZE_UNITS   = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB']
 
 def get_readable_file_size(size_in_bytes):
     if size_in_bytes is None:
