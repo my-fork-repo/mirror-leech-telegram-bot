@@ -28,7 +28,7 @@ async def speedtest(_, message):
     path = result['share']
     pat = "https://graph.org/file/256b97eb1983f5dc7f181.jpg"
     string_speed = f'''
-➲ <b><i>SPEEDTEST INFO</i></b>
+➲ <b><i>SPEEDTEST INFO IN ANASTY MIRROR BOT\n</i></b>
 ┠ <b>Upload:</b> <code>{get_readable_file_size(result['upload'] / 8)}/s</code>
 ┠ <b>Download:</b>  <code>{get_readable_file_size(result['download'] / 8)}/s</code>
 ┠ <b>Ping:</b> <code>{result['ping']} ms</code>
@@ -53,11 +53,11 @@ async def speedtest(_, message):
 ┖ <b>ISP Rating:</b> <code>{result['client']['isprating']}</code>
 '''
     try:
-        pho = await sendMessage(message, string_speed, pat)
+        pho = await sendMessage(message, string_speed)
         await deleteMessage(speed)
     except Exception as e:
         LOGGER.error(str(e))
-        await editMessage(speed, string_speed, pat)
+        await editMessage(speed, string_speed)
 
 bot.add_handler(
     MessageHandler(
