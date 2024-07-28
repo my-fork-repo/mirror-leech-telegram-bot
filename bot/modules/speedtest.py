@@ -57,7 +57,7 @@ async def speedtest(_, message):
     except Exception as e:
         LOGGER.error(str(e))
         b = f"<b>Bot Uptime:</b> {get_readable_time(time() - botStartTime)}\n"
-        await editMessage(speed, string_speed,b)
+        await editMessage(speed, string_speed)
 
 bot.add_handler(
     MessageHandler(
