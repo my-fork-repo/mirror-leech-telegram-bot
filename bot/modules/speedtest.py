@@ -53,11 +53,11 @@ async def speedtest(_, message):
 ┖ <b>ISP Rating:</b> <code>{result['client']['isprating']}</code>
 '''
     try:
-        pho = await sendMessage(message, string_speed, photo=pat)
+        pho = await sendMessage(message, string_speed, pat)
         await deleteMessage(speed)
     except Exception as e:
         LOGGER.error(str(e))
-        await editMessage(speed, string_speed, photo=pat)
+        await editMessage(speed, string_speed, pat)
 
 bot.add_handler(
     MessageHandler(
