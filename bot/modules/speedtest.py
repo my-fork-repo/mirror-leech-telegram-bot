@@ -26,6 +26,7 @@ async def speedtest(_, message):
     test.results.share()
     result = test.results.dict()
     path = result['share']
+    pat = "https://graph.org/file/256b97eb1983f5dc7f181.jpg"
     string_speed = f'''
 ➲ <b><i>SPEEDTEST INFO</i></b>
 ┠ <b>Upload:</b> <code>{get_readable_file_size(result['upload'] / 8)}/s</code>
@@ -52,7 +53,7 @@ async def speedtest(_, message):
 ┖ <b>ISP Rating:</b> <code>{result['client']['isprating']}</code>
 '''
     try:
-        pho = await sendMessage(message, string_speed, photo=path)
+        pho = await sendMessage(message, string_speed, photo=pat)
         await deleteMessage(speed)
     except Exception as e:
         LOGGER.error(str(e))
