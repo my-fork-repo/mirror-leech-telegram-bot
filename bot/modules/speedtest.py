@@ -12,7 +12,7 @@ from bot.helper.ext_utils.bot_utils import get_readable_file_size, new_task
 
 @new_task
 async def speedtest(_, message):
-    speed = await sendMessage(message, "<i>Initiating Speedtest...</i>")
+    speed = await sendMessage(message, "<i>Initiating Speedtest in anasty bot...</i>")
     try:
         test = Speedtest()
     except ConfigRetrievalError:
@@ -58,11 +58,11 @@ async def speedtest(_, message):
 
 bot.add_handler(
     MessageHandler(
-        speedtest, filters=command(BotCommands.SpeedCommand) & CustomFilters.owner
+        speedtest, filters=command(BotCommands.SpeedCommand) & CustomFilters.authorized
     )
 )
 bot.add_handler(
     EditedMessageHandler(
-        speedtest, filters=command(BotCommands.SpeedCommand) & CustomFilters.owner
+        speedtest, filters=command(BotCommands.SpeedCommand) & CustomFilters.authorized
     )
 )
