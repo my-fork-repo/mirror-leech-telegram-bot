@@ -58,7 +58,7 @@ async def speedtest(_, message):
 
 bot.add_handler(
     MessageHandler(
-        shell, filters=command(BotCommands.speedCommand) & CustomFilters.owner
+        speedtest, filters=command(BotCommands.speedCommand) & CustomFilters.owner
     )
 )
 bot.add_handler(
