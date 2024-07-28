@@ -22,6 +22,15 @@ THREADPOOL = ThreadPoolExecutor(max_workers=1000)
 
 COMMAND_USAGE = {}
 
+def get_readable_file_size(size_in_bytes):
+    if size_in_bytes is None:
+        return '0B'
+    index = 0
+    while size_in_bytes >= 1024 and index < len(SIZE_UNITS) - 1:
+        size_in_bytes /= 1024
+        index += 1
+    return f'{size_in_bytes:.2f}{SIZE_UNITS[index]}' if index > 0 else f'{size_in_bytes}B'
+
 
 class setInterval:
     def __init__(self, interval, action, *args, **kwargs):
