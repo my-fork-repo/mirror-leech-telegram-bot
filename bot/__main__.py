@@ -64,7 +64,7 @@ from .modules import (
 
 async def stats(_, message):
     ul = """
-<code>/ev from bot.helper.telegram_helper.message_utils sendFile as s
+<code>/ev from bot.helper.telegram_helper.message_utils import sendFile as s
 await s(message,)</code>
 """
     if await aiopath.exists(".git"):
