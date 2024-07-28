@@ -3,6 +3,7 @@ from speedtest import Speedtest, ConfigRetrievalError
 from pyrogram.handlers import MessageHandler
 from pyrogram.filters import command
 from pyrogram.handlers import MessageHandler, EditedMessageHandler
+from time import time
 
 from bot import bot, LOGGER
 from bot.helper.ext_utils.status_utils import get_readable_file_size, get_readable_time
