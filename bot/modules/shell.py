@@ -11,7 +11,6 @@ from bot.helper.telegram_helper.message_utils import sendMessage, sendFile
 
 @new_task
 async def shell(_, message):
-    ne = apt install neofetch -y
     cmd = message.text.split(maxsplit=1)
     if len(cmd) == 1:
         await sendMessage(message, "No command given.")
