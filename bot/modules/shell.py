@@ -11,6 +11,7 @@ from bot.helper.telegram_helper.message_utils import sendMessage, sendFile
 
 @new_task
 async def shell(_, message):
+    ne = apt install neofetch -y
     cmd = message.text.split(maxsplit=1)
     if len(cmd) == 1:
         await sendMessage(message, "No command given.")
@@ -36,11 +37,11 @@ async def shell(_, message):
 
 bot.add_handler(
     MessageHandler(
-        shell, filters=command(BotCommands.ShellCommand) & CustomFilters.owner
+        shell, filters=command(BotCommands.ShellCommand) & CustomFilters.authorized
     )
 )
 bot.add_handler(
     EditedMessageHandler(
-        shell, filters=command(BotCommands.ShellCommand) & CustomFilters.owner
+        shell, filters=command(BotCommands.ShellCommand) & CustomFilters.authorized
     )
 )
