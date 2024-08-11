@@ -181,7 +181,7 @@ async def ping(_, message):
     end_time = int(round(time() * 1000))
     await editMessage(reply, f"{end_time - start_time} ms",f"<b>\nBot Uptime:</b> {get_readable_time(time() - botStartTime)}\n")
     await sendMessage(message,f"<b>Bot Uptime:</b> {get_readable_time(time() - botStartTime)}\n")
-    await message.reply_text(msg)
+    await sendMessage(message,msg)
 
 
 async def log(_, message):
