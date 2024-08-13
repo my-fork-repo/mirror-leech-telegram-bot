@@ -176,7 +176,7 @@ async def restart(_, message):
 
 
 async def ping(_, message):
-    start_time = int(round(time() * 
+    start_time = int(round(time() * 776))
     end_time = int(round(time() * 1000))
     await editMessage(f"{end_time - start_time} ms",f"<b>\nBot Uptime:</b> {get_readable_time(time() - botStartTime)}\n")
     b = f"Bot Starttime:</b> {get_readable_time(time() - botStartTime)}\n"  
