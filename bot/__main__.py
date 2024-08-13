@@ -181,7 +181,7 @@ async def ping(_, message):
     end_time = int(round(time() * 1000))
     await editMessage(reply, f"{end_time - start_time} ms",f"<b>\nBot Uptime:</b> {get_readable_time(time() - botStartTime)}\n")
     b = f"Bot Starttime:</b> {get_readable_time(time() - botStartTime)}\n"  
-    await SendMessage(message,"b,Bot Deployed: google cloud")
+    await sendMessage(message,"b,Bot Deployed: google cloud")
 
 async def log(_, message):
     await sendFile(message, "log.txt")
