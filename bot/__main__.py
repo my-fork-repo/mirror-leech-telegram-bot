@@ -180,12 +180,8 @@ async def ping(_, message):
     reply = await sendMessage(message, "Starting Ping")
     end_time = int(round(time() * 1000))
     await editMessage(reply, f"{end_time - start_time} ms",f"<b>\nBot Uptime:</b> {get_readable_time(time() - botStartTime)}\n")
-    b = f"Bot Uptime:</b> {get_readable_time(time() - botStartTime)}\n"  
-    a = f"{get_readable_file_size(total)}"
-    if a.startswith("113"):
-        await SendMessage(message,"b,Bot Deployed: gcloud")
-    else:
-        await sendMessage(message,"Bot Deployed: local")
+    b = f"Bot Starttime:</b> {get_readable_time(time() - botStartTime)}\n"  
+    await SendMessage(message,"b,Bot Deployed: google cloud")
 
 async def log(_, message):
     await sendFile(message, "log.txt")
