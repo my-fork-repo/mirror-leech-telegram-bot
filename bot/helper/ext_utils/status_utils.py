@@ -14,7 +14,7 @@ from bot import (
 from bot.helper.ext_utils.bot_utils import sync_to_async
 from bot.helper.telegram_helper.button_build import ButtonMaker
 
-SIZE_UNITS = ["B", "KB", "मेगाबाइट", "GB", "TB", "PB"]
+SIZE_UNITS = ["B", "KB", " मेगाबाइट", "GB", "TB", "PB"]
 
 
 class MirrorStatus:
@@ -144,7 +144,7 @@ def get_progress_bar_string(pct):
     pct = float(pct.strip("%"))
     p = min(max(pct, 0), 100)
     cFull = int(p // 8)
-    p_str = "■" * cFull
+    p_str = "●" * cFull
     p_str += "•" * (12 - cFull)
     return f"[{p_str}]"
 
