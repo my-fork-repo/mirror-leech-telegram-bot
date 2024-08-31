@@ -203,7 +203,7 @@ async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=
             msg += f" | <b>Time: </b>{task.seeding_time()}"
         else:
             msg += f"\n<b>Size: </b>{task.size()} "
-        msg += f"\n<b>Gid: </b><code>/c {task.gid()}</code>\n\n"
+        msg += f"\n<b>Gid: </b>/c_{task.gid()}\n\n"
 
     if len(msg) == 0:
         if status == "All":
@@ -229,4 +229,5 @@ async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=
     msg += f"<b>CPU:</b> {cpu_percent()}% | <b>FREE:</b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
     msg += f"\n<b>RAM:</b> {virtual_memory().percent}% | <b>UPTIME:</b> {get_readable_time(time() - botStartTime)}"
     msg += f"\n <b>join my group : </b> https://t.me/+n8u2GAyzcg00NmFl"
+    msg += f"\n <b>join leech group : </b> https://t.me/leechedgroup"
     return msg, button
