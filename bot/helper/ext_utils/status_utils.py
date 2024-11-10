@@ -142,8 +142,8 @@ def get_progress_bar_string(pct):
     pct = float(pct.strip("%"))
     p = min(max(pct, 0), 100)
     cFull = int(p // 8)
-    p_str = "■" * cFull
-    p_str += "□" * (12 - cFull)
+    p_str = "●" * cFull
+    p_str += "•" * (12 - cFull)
     return f"[{p_str}]"
 
 
@@ -226,4 +226,6 @@ async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=
     button = buttons.build_menu(8)
     msg += f"<b>CPU:</b> {cpu_percent()}% | <b>FREE:</b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
     msg += f"\n<b>RAM:</b> {virtual_memory().percent}% | <b>UPTIME:</b> {get_readable_time(time() - botStartTime)}"
+    msg += f"\n <b>join my group : </b> https://t.me/+n8u2GAyzcg00NmFl"
+    msg += f"\n <b>join leech group : </b> https://t.me/leechedgroup"
     return msg, button
