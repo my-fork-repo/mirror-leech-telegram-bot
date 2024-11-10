@@ -38,13 +38,11 @@ bot.add_handler(
     MessageHandler(
         shell,
         filters=command(BotCommands.ShellCommand, case_sensitive=True)
-        & CustomFilters.authorized,
     )
 )
 bot.add_handler(
     EditedMessageHandler(
         shell,
         filters=command(BotCommands.ShellCommand, case_sensitive=True)
-        & CustomFilters.authorized
     )
 )
