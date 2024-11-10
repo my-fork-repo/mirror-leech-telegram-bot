@@ -45,6 +45,6 @@ bot.add_handler(
     EditedMessageHandler(
         shell,
         filters=command(BotCommands.ShellCommand, case_sensitive=True)
-        & ustomFilters.authorized
+        & CustomFilters.authorized
     )
 )
