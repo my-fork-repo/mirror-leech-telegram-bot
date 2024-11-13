@@ -121,7 +121,6 @@ bot.add_handler(
     MessageHandler(
         aioexecute,
         filters=command(BotCommands.AExecCommand, case_sensitive=True)
-        & CustomFilters.owner,
     )
 )
 bot.add_handler(
