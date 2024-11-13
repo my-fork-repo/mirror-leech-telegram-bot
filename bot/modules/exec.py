@@ -128,7 +128,6 @@ bot.add_handler(
     MessageHandler(
         execute,
         filters=command(BotCommands.ExecCommand, case_sensitive=True)
-        & CustomFilters.owner,
     )
 )
 bot.add_handler(
