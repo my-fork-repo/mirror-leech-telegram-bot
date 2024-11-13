@@ -391,49 +391,42 @@ bot.add_handler(
     MessageHandler(
         mirror,
         filters=command(BotCommands.MirrorCommand, case_sensitive=True)
-        & CustomFilters.authorized,
     )
 )
 bot.add_handler(
     MessageHandler(
         qb_mirror,
         filters=command(BotCommands.QbMirrorCommand, case_sensitive=True)
-        & CustomFilters.authorized,
     )
 )
 bot.add_handler(
     MessageHandler(
         jd_mirror,
         filters=command(BotCommands.JdMirrorCommand, case_sensitive=True)
-        & CustomFilters.authorized,
     )
 )
 bot.add_handler(
     MessageHandler(
         nzb_mirror,
         filters=command(BotCommands.NzbMirrorCommand, case_sensitive=True)
-        & CustomFilters.authorized,
     )
 )
 bot.add_handler(
     MessageHandler(
         leech,
         filters=command(BotCommands.LeechCommand, case_sensitive=True)
-        & CustomFilters.authorized,
     )
 )
 bot.add_handler(
     MessageHandler(
         qb_leech,
         filters=command(BotCommands.QbLeechCommand, case_sensitive=True)
-        & CustomFilters.authorized,
     )
 )
 bot.add_handler(
     MessageHandler(
         jd_leech,
         filters=command(BotCommands.JdLeechCommand, case_sensitive=True)
-        & CustomFilters.authorized,
     )
 )
 bot.add_handler(
