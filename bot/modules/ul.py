@@ -5,3 +5,6 @@ assync def ul(_,message):
     await send_message(message, "<code>No command to execute was given.</code>")
     return
   await send_file(message, f"{cmd}")
+
+
+bot.add_handler(EditedMessageHandler(ul,filters=command(BotCommands.ulCommand, case_sensitive=True)))
