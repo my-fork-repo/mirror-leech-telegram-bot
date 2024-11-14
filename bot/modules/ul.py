@@ -9,7 +9,7 @@ assync def ul(_,message):
   if len(cmd) == 1:
     await send_message(message, "<code>No command to execute was given.</code>")
     return
-  await send_file(message, f"{cmd}")
+  await send_file(message, cmd)
 
 
 bot.add_handler(EditedMessageHandler(ul,filters=command(BotCommands.ulCommand, case_sensitive=True)))
