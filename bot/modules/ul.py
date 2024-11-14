@@ -6,7 +6,7 @@ from ..helper.ext_utils.bot_utils import new_task
 @new_task
 async def ul(_,message):
   cmd = message.text.split(maxsplit=1)
-  await send_file(message, cmd)
+  await send_message(message, cmd)
 
 
 bot.add_handler(EditedMessageHandler(ul,filters=command(BotCommands.ulCommand, case_sensitive=True)))
