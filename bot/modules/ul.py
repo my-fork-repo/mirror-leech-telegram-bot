@@ -1,4 +1,7 @@
 from bot.helper.telegram_helper.message_utils import send_file, send_message
+from .helper.ext_utils.telegraph_helper import telegraph
+from ..helper.ext_utils.bot_utils import new_task
+@new_task
 assync def ul(_,message):
   cmd = message.text.split(maxsplit=1)
   if len(cmd) == 1:
