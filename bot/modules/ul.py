@@ -1,4 +1,6 @@
 from bot import bot
+from pyrogram.filters import command
+
 from ..helper.telegram_helper.message_utils import send_file, send_message
 from ..helper.ext_utils.telegraph_helper import telegraph
 from pyrogram.handlers import MessageHandler, EditedMessageHandler
