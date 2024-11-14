@@ -1,3 +1,6 @@
 from bot.helper.telegram_helper.message_utils import send_file, send_message
-msg = "hi"
-await send_file(message, f"")
+cmd = message.text.split(maxsplit=1)
+if len(cmd) == 1:
+  await send_message(message, "<code>No command to execute was given.</code>")
+  return
+await send_file(message, f"{cmd}")
