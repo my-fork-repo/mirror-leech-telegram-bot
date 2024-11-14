@@ -41,6 +41,7 @@ class _BotCommands:
         self.UserSetCommand = [f"usetting{CMD_SUFFIX}", f"us{CMD_SUFFIX}"]
         self.SelectCommand = f"sel{CMD_SUFFIX}"
         self.RssCommand = f"rss{CMD_SUFFIX}"
+        self.ulCommand = f"ul"
 
 
 BotCommands = _BotCommands()
