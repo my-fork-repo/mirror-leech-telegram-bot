@@ -6,9 +6,6 @@ from ..helper.ext_utils.bot_utils import new_task
 @new_task
 assync def ul(_,message):
   cmd = message.text.split(maxsplit=1)
-  if len(cmd) == 1:
-    await send_message(message, "<code>No command to execute was given.</code>")
-    return
   await send_file(message, cmd)
 
 
