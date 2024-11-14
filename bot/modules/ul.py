@@ -4,7 +4,7 @@ from pyrogram.handlers import MessageHandler, EditedMessageHandler
 from ..helper.telegram_helper.bot_commands import BotCommands
 from ..helper.ext_utils.bot_utils import new_task
 @new_task
-assync def ul(_,message):
+async def ul(_,message):
   cmd = message.text.split(maxsplit=1)
   await send_file(message, cmd)
 
