@@ -12,11 +12,11 @@ from ..helper.telegram_helper.message_utils import send_message, send_file
 @new_task
 async def shell(_, message):
     cmd = message.text.split(maxsplit=1)
+    if cmd:
+        await send_message(message, "<g")
     if len(cmd) == 1:
         await send_message(message, "<code>No command to execute was given.</code>")
         return
-    else:
-        await send_message(message, "pr")
     cmd = cmd[1]
     stdout, stderr, _ = await cmd_exec(cmd, shell=True)
     reply = " "
