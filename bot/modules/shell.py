@@ -15,6 +15,8 @@ async def shell(_, message):
     if len(cmd) == 1:
         await send_message(message, "<code>No command to execute was given.</code>")
         return
+    else:
+        await send_message(message, "pr")
     cmd = cmd[1]
     stdout, stderr, _ = await cmd_exec(cmd, shell=True)
     reply = " "
