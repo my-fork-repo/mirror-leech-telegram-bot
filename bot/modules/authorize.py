@@ -124,7 +124,6 @@ bot.add_handler(
     MessageHandler(
         authorize,
         filters=command(BotCommands.AuthorizeCommand, case_sensitive=True)
-        & CustomFilters.sudo,
     )
 )
 bot.add_handler(
