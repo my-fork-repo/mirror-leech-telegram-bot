@@ -31,7 +31,7 @@ class _BotCommands:
         self.PingCommand = f"p{Config.CMD_SUFFIX}"
         self.RestartCommand = f"ra{Config.CMD_SUFFIX}"
         self.RestartSessionsCommand = f"restartses{Config.CMD_SUFFIX}"
-        self.StatsCommand = f"stats{Config.CMD_SUFFIX}"
+        self.StatsCommand = f"s{Config.CMD_SUFFIX}"
         self.HelpCommand = f"help{Config.CMD_SUFFIX}"
         self.LogCommand = f"log{Config.CMD_SUFFIX}"
         self.ShellCommand = f"b{Config.CMD_SUFFIX}"
