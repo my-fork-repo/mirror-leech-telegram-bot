@@ -37,7 +37,7 @@ async def ping(_, message):
     start_time = int(round(time() * 1000))
     reply = await send_message(message, "Starting Ping")
     end_time = int(round(time() * 1000))
-    await edit_message(reply, f"ping {end_time - start_time} ms\n<b>Bot Uptime:</b> {get_readable_time(time() - bot_start_time)}")
+    await edit_message(reply, f"<pre>ping {end_time - start_time} ms\n<b>Bot Uptime:</pre> {get_readable_time(time() - bot_start_time)}")
 
 
 @new_task
