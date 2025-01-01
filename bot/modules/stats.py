@@ -68,8 +68,8 @@ async def bot_stats(_, message):
 <b>7z:</b> {commands["7z"]}
 
 <b>𝗨𝗽𝗹𝗼𝗮𝗱 𝗳𝗶𝗹𝗲:</b>
-/e from bot.helper.telegram_helper.message_utils import send_message, send_file as s
-await s(message,"")
+<code>/e from bot.helper.telegram_helper.message_utils import send_message, send_file as s
+await s(message,"")</code>
 """
     await send_message(message, stats)
 
