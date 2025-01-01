@@ -37,12 +37,13 @@ async def ping(_, message):
     start_time = int(round(time() * 1000))
     reply = await send_message(message, "Starting Ping")
     end_time = int(round(time() * 1000))
-    await edit_message(reply, f"<pre>ping {end_time - start_time} ms\n<b>Bot start time: {get_readable_time(time() - bot_start_time)</pre>}")
+    await edit_message(reply, f"<pre>ping {end_time - start_time} ms\n<b>Bot start time: {get_readable_time(time() - bot_start_time)}</pre>")
 
 
 @new_task
 async def log(_, message):
     await send_file(message, "log.txt")
+
 @new_task
 async def ul(file, message):
     await send_file(message, file)
