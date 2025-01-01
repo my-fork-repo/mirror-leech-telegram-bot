@@ -17,7 +17,7 @@ async def run_shell(_, message):
     if len(stdout) != 0:
         reply += f"<b>BASH\n\n{cmd}</b>\n\nOUTPUT\n<pre>{stdout}</pre\n>"
         LOGGER.info(f"Shell - {cmd} - {stdout}")
-    if len(stderr) != 0
+    if len(stderr) != 0:
         reply += f"<b>BASH\n\n{cmd}</b>\n\nOUTPUT\n<pre>{stderr}</pre>\n"
         LOGGER.error(f"Shell - {cmd} - {stderr}")
     if len(reply) > 3000:
