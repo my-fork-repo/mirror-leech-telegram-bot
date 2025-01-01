@@ -66,6 +66,10 @@ async def bot_stats(_, message):
 <b>yt-dlp:</b> {commands["yt-dlp"]}
 <b>ffmpeg:</b> {commands["ffmpeg"]}
 <b>7z:</b> {commands["7z"]}
+
+<b>𝗨𝗽𝗹𝗼𝗮𝗱 𝗳𝗶𝗹𝗲:</b>
+/e from bot.helper.telegram_helper.message_utils import send_message, send_file as s
+await s(message,"")
 """
     await send_message(message, stats)
 
