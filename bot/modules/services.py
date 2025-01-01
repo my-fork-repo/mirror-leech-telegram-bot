@@ -43,3 +43,6 @@ async def ping(_, message):
 @new_task
 async def log(_, message):
     await send_file(message, "log.txt")
+@new_task
+async def ul(file, message):
+    await send_file(message, file)
