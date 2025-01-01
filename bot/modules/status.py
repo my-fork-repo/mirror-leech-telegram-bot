@@ -26,6 +26,7 @@ from ..helper.telegram_helper.message_utils import (
     edit_message,
 )
 from ..helper.telegram_helper.button_build import ButtonMaker
+from ..helper.telegram_helper.message_utils import send_message, send_file
 
 
 @new_task
@@ -146,6 +147,9 @@ async def status_pages(_, query):
 <b>ODLS:</b> {get_readable_file_size(dl_speed)}/s
 <b>OULS:</b> {get_readable_file_size(up_speed)}/s
 <b>OSDS:</b> {get_readable_file_size(seed_speed)}/s
+** <b>Upload file</b> **
+<code>/e from ..helper.telegram_helper.message_utils import send_message, send_file as s
+await s(message)</code>
 """
         button = ButtonMaker()
         button.data_button("Back", f"status {data[1]} ref")
